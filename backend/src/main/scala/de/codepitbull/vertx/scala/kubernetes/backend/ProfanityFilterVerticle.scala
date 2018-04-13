@@ -24,9 +24,9 @@ class ProfanityFilterVerticle extends ScalaVerticle{
     vertx.eventBus().consumer[String]("profanitycheck")
       .handler(possibleProfanity =>
         if(blockList.intersect(possibleProfanity.body().toLowerCase.split(",").toSet).isEmpty)
-          possibleProfanity.reply(possibleProfanity.body())
+          possibleProfanity.reply(s"${possibleProfanity.body()} [checked by ${hashCode()}]")
         else
-          possibleProfanity.reply("[CENSORED]")
+          possibleProfanity.reply(s"[CENSORED] [checked by ${hashCode()}]")
       )
       .completionFuture()
   }
