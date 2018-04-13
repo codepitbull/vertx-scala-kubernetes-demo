@@ -1,0 +1,18 @@
+.MessageInput {
+  text-align: left;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  font-size: large;
+}
+
+.bottomFeeder {
+  text-align: left;
+  background-color: aliceblue;
+  position: fixed;
+  padding-left: 10px;
+  bottom: 0;
+  width: 100%;
+  font-size: large;
+  z-index: 1000;
+}

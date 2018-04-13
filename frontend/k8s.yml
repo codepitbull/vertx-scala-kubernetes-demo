@@ -1,0 +1,41 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: frontend
+  labels:
+    app: frontend
+spec:
+  replicas: 1
+  revisionHistoryLimit: 1
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0
+  minReadySeconds: 60
+  template:
+    metadata:
+      name: frontend
+      labels:
+        app: frontend
+        hazelcast: h1
+
+    spec:
+      containers:
+      - name: frontend
+
+        image: codepitbull/frontend:v5
+        imagePullPolicy: Never
+
+        ports:
+        - name: reactfrontend
+          containerPort: 8667
+          protocol: TCP
+
+        resources:
+          limits:
+            cpu: "500m"
+            memory: "500Mi"
+          requests:
+            cpu: "500m"
+            memory: "500Mi"
